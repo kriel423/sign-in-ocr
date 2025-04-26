@@ -16,9 +16,11 @@ OUTPUT_PATH = "output/weekly_hours.xlsx"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs("output", exist_ok=True)
 
+
 @app.get("/", response_class=HTMLResponse)
 def upload_form(request: Request):
     return templates.TemplateResponse("upload.html", {"request": request})
+
 
 @app.post("/upload")
 def upload_images(files: list[UploadFile] = File(...)):
@@ -31,4 +33,8 @@ def upload_images(files: list[UploadFile] = File(...)):
         file_paths.append(save_path)
 
     process_images_and_generate_excel(file_paths, OUTPUT_PATH)
-    return FileResponse(path=OUTPUT_PATH, filename="weekly_hours.xlsx", media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    return FileResponse(
+        path=OUTPUT_PATH,
+        filename="weekly_hours.xlsx",
+        media_type=
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
