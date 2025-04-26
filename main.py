@@ -2,7 +2,8 @@ from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-import shutil, os
+import shutil
+import os
 import uuid
 from utils.ocr_parser import process_images_and_generate_excel
 

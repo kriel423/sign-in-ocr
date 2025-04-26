@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 
+
 def extract_fields(text):
     lines = text.split('\n')
     records = []
@@ -22,11 +23,14 @@ def extract_fields(text):
             records.append([name, start, end, hours, comment])
     return records
 
+
 def process_images_and_generate_excel(image_paths, output_file):
     ocr = PaddleOCR(use_angle_cls=True, lang='en')
     combined_records = {}
 
-    weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    weekdays = [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ]
     for i, image_path in enumerate(image_paths):
         result = ocr.ocr(image_path, cls=True)
         text = '\n'.join([line[1][0] for block in result for line in block])
