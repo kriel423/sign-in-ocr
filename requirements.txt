@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+jinja2
+paddleocr
+paddlepaddle
+python-multipart
+openpyxl
+gunicorn
